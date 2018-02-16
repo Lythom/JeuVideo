@@ -36,7 +36,7 @@ public class AnimationCourse : MonoBehaviour {
         }
     }
 
-    void ChangeAnimation (string anim) {
+    public void ChangeAnimation (string anim) {
         this.currentAnim = GetAnimIndex (anim);
         this.currentSpriteIdx = 0;
     }
@@ -57,18 +57,18 @@ public class AnimationCourse : MonoBehaviour {
 
     }
 
-    int GetAnimIndex (string animName) {
+    private int GetAnimIndex (string animName) {
         return System.Array
             .FindIndex (anims, anim => {
                 return anim.name == animName;
             });
     }
 
-    float GetFrameDurationInSec () {
+    private float GetFrameDurationInSec () {
         return 1f / imagesParSecondes;
     }
 
-    public void NextFrame () {
+    private void NextFrame () {
         currentSpriteIdx = (currentSpriteIdx + 1) % anims[currentAnim].sprites.Length;
         spriteRenderer.sprite = anims[currentAnim].sprites[currentSpriteIdx];
     }

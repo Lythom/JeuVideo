@@ -21,6 +21,7 @@ public class DrawableTexture : MonoBehaviour {
 			}
 		}
 		texture.Apply ();
+		this.GetComponent<Renderer>().sortingLayerName = "AboveBackground";
 	}
 
 	// Update is called once per frame

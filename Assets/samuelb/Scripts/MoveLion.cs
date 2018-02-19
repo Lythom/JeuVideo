@@ -37,7 +37,7 @@ public class MoveLion : MonoBehaviour {
 		// Vector3.ClampMagnitude permet de limiter la vitesse globale en borant l'amplitude du vecteur de vitesse
 		currentSpeed = Vector3.ClampMagnitude (currentSpeed, maxSpeed);
 		// Simule un freinage lorsque le personnage cesse de se déplacer
-		if (currentAcceleration.magnitude == 0) currentSpeed = Vector3.zero;
+		if (currentAcceleration.magnitude == 0) currentSpeed *= 0.8f;
 
 		// finalement, ajoute la vitesse en cours à la position pour créer le mouvement.
 		// currentSpeed est exprimé en unités par seconde mais lors d'un update 

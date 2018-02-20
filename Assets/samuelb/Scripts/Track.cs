@@ -6,11 +6,7 @@ public class Track : MonoBehaviour {
 
 	public Transform target;
 	public float trackingDistance = 1f;
-
-	// Use this for initialization
-	void Start () {
-
-	}
+	public float stiffness = 0.05f;
 
 	// Update is called once per frame
 	void Update () {
@@ -38,11 +34,11 @@ public class Track : MonoBehaviour {
 		//            Les Vector3 passés en paramètre sont transformé automatique en Vector2.
 		if (Vector2.Distance (target.position, this.transform.position) > trackingDistance) {
 			// C'est la formule magique du easing joli et rapide à mettre en place
-			// Chaque frame, on va déplacer la Caméra de 5% de la distance qui la sépare de la cible
+			// Chaque frame, on va déplacer la Caméra de <stiffness*100>% de la distance qui la sépare de la cible
 			// La formule est offset = (cible - valeur) * pourcentageDeProgression
 			// C'est équivalent à Mathf.Lerp(valeur, cible, pourcentageDeProgression);
 			// Pour une Vector3, C'est Vector3.Lerp(position, destination, pourcentageDeProgression)
-			moveOffset = (targetPos - this.transform.position) * 0.05f;
+			moveOffset = (targetPos - this.transform.position) * stiffness;
 		}
 
 		// Applique le déplacement à la position en additionnant les vecteurs

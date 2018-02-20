@@ -308,3 +308,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 46912618}
   trackingDistance: 1
+  stiffness: 0.05

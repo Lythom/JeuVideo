@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Track : MonoBehaviour {
 
 	public Transform target;
+	public Vector2 offset;
 	public float trackingDistance = 1f;
 	public float stiffness = 0.05f;
 
 	// Update is called once per frame
 	void Update () {
+		if (target == null) return;
 
 		// Position vers laquelle la caméra doit tendre
 		// attention à bien conserver la position Z actuelle
 		// on ne poursuit que les positions x et y
 		Vector3 targetPos = new Vector3 (
-			target.position.x,
-			target.position.y,
+			target.position.x + offset.x,
+			target.position.y + offset.y,
 			this.transform.position.z
 		);
 
@@ -38,7 +41,7 @@ public class Track : MonoBehaviour {
 			// La formule est offset = (cible - valeur) * pourcentageDeProgression
 			// C'est équivalent à Mathf.Lerp(valeur, cible, pourcentageDeProgression);
 			// Pour une Vector3, C'est Vector3.Lerp(position, destination, pourcentageDeProgression)
-			moveOffset = (targetPos - this.transform.position) * stiffness;
+			moveOffset = (targetPos - new Vector3(this.transform.position.x, this.transform.position.y, 0)) * stiffness;
 		}
 
 		// Applique le déplacement à la position en additionnant les vecteurs

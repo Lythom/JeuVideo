@@ -14,6 +14,11 @@ public class Shake : MonoBehaviour {
 		EventManager.StartListening ("Shake", this.OnShake);
 	}
 
+	void OnDestroy()
+	{
+		EventManager.StopListening ("Shake", this.OnShake);		
+	}
+
 	public void OnShake () {
 		if (!shaking) StartCoroutine (DoShake ());
 	}

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class Track : MonoBehaviour {
+public class LateTrack : MonoBehaviour {
 
 	public Transform target;
 	public Vector2 offset;
 	public float trackingDistance = 1f;
 	public float stiffness = 0.05f;
 
-	void Update () {
+	void LateUpdate () {
 		if (target == null) return;
 
 		// Position vers laquelle la caméra doit tendre

@@ -11,24 +11,24 @@ public class Shake : MonoBehaviour {
 	private bool shaking = false;
 
 	void Start () {
-		EventManager.StartListening ("Shake", this.OnShake);
+		EventManager<float>.StartListening ("Shake", this.OnShake);
 	}
 
 	void OnDestroy()
 	{
-		EventManager.StopListening ("Shake", this.OnShake);		
+		EventManager<float>.StopListening ("Shake", this.OnShake);		
 	}
 
-	public void OnShake () {
-		if (!shaking) StartCoroutine (DoShake ());
+	public void OnShake (float force) {
+		if (!shaking) StartCoroutine (DoShake (force));
 	}
 
-	IEnumerator DoShake () {
+	IEnumerator DoShake (float force) {
 		shaking = true;
 		Quaternion originalRotation = this.transform.rotation;
 		for (int i = 0; i < durationInFrames; i++) {
 			float angle = CustumEase ((float) i / durationInFrames);
-			this.transform.rotation = Quaternion.Euler (0, 0, (angle - 0.5f) * amplitudeInDeg);
+			this.transform.rotation = Quaternion.Euler (0, 0, (angle - 0.5f) * amplitudeInDeg * force);
 			yield return null;
 		}
 		this.transform.rotation = originalRotation;

@@ -20,6 +20,6 @@ public class LifebarController : MonoBehaviour {
 
 	public void AddHp (float amount) {
 		hp += amount;
-		EventManager.TriggerEvent("Shake");
+		EventManager<float>.TriggerEvent("Shake", amount);
 	}
 }

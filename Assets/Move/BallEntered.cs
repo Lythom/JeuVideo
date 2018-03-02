@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BallEntered : MonoBehaviour {
 
-	public GameObject ball;
+	public string ballTag;
+	public string scoreEventName;
 
-	private void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject == ball) Debug.Log("La balle de même couleur est passée !");
+	private void OnTriggerEnter2D (Collider2D other) {
+		if (other.gameObject.CompareTag(ballTag)) EventManager<Transform>.TriggerEvent (scoreEventName, other.transform);
 	}
 }

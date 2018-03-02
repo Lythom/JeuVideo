@@ -1,46 +1,42 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 /**
  * From https://unity3d.com/fr/learn/tutorials/topics/scripting/events-creating-simple-messaging-system
  * Changes : remove the unused Singleton pattern, use static instead (75 to 46 lines)
  */
-public static class EventManager {
+public static class EventManager<T> {
 
-    private static Dictionary <string, UnityEvent> eventDictionary = new Dictionary<string, UnityEvent>();
+    [System.Serializable]
+    public class EventWithArgs : UnityEvent<T> { }
 
-    public static void StartListening (string eventName, UnityAction listener)
-    {
-        UnityEvent thisEvent = null;
-        if (eventDictionary.TryGetValue (eventName, out thisEvent))
-        {
+    private static Dictionary<string, EventWithArgs> eventDictionary = new Dictionary<string, EventWithArgs> ();
+
+    public static void StartListening (string eventName, UnityAction<T> listener) {
+        EventWithArgs thisEvent = null;
+        if (eventDictionary.TryGetValue (eventName, out thisEvent)) {
             thisEvent.AddListener (listener);
-        } 
-        else
-        {
-            thisEvent = new UnityEvent ();
+        } else {
+            thisEvent = new EventWithArgs ();
             thisEvent.AddListener (listener);
             eventDictionary.Add (eventName, thisEvent);
         }
     }
 
-    public static void StopListening (string eventName, UnityAction listener)
-    {
-        UnityEvent thisEvent = null;
-        if (eventDictionary.TryGetValue (eventName, out thisEvent))
-        {
+    public static void StopListening (string eventName, UnityAction<T> listener) {
+        EventWithArgs thisEvent = null;
+        if (eventDictionary.TryGetValue (eventName, out thisEvent)) {
             thisEvent.RemoveListener (listener);
         }
     }
 
-    public static void TriggerEvent (string eventName)
-    {
-        UnityEvent thisEvent = null;
-        if (eventDictionary.TryGetValue (eventName, out thisEvent))
-        {
-            thisEvent.Invoke ();
+    public static void TriggerEvent (string eventName, T arg = default(T)) {
+        EventWithArgs thisEvent = null;
+        if (eventDictionary.TryGetValue (eventName, out thisEvent)) {
+            thisEvent.Invoke (arg);
         }
     }
 }

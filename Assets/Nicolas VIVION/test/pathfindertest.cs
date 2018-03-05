@@ -6,8 +6,6 @@ using System.Linq;
 
 using UnityEngine;
 
-
-
 public struct Destination {
 
     public Node node;
@@ -59,7 +57,6 @@ public class Node {
     }
 
 }
-
 
 
 public static class PathFindingGraph {
@@ -153,22 +150,15 @@ public static class PathFindingGraph {
 
 
     // explore brutallement tous les chemins de profondeur maxlevel
-
     public static void Crawl (int maxlevel, List<Node> path) {
-
-
 
         Debug.Log (String.Join ("->", path.Select (node => node.name).ToArray ()));
 
         if (maxlevel == 0) return;
 
-
-
         Destination[] dests = path.Last ().destinations;
 
         if (dests == null || dests.Length == 0) return;
-
-
 
         foreach (Destination d in dests) {
 

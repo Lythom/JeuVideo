@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace networked {
 
-	public class MoveLionPhysics : MonoBehaviour {
+	public class MoveLionPhysicsNetworked : NetworkBehaviour {
 
 		public float acceleration = 8f; // unit per second, per second
 		public float maxSpeed = 4f; // unit per second
+		public Color orangeColor;
 
 		private AnimationCourse ac;
 		private Rigidbody2D rb;
@@ -15,12 +17,24 @@ namespace networked {
 		// Use this for initialization
 		void Start () {
 			// Récupère une référence au script AnimationCourse attaché au même GameObject
-			ac = GetComponent<AnimationCourse> ();
+			ac = GetComponent<networked.AnimationCourse> ();
 			rb = GetComponent<Rigidbody2D> ();
+			if (this.transform.position.x > 0) {
+				SpriteRenderer sr = GetComponent<SpriteRenderer> ();
+				sr.color = orangeColor;
+				sr.flipX = true;
+			}
+			if (!isServer) {
+				this.GetComponent<CircleCollider2D> ().radius = 0.30f;
+			}
 		}
 
 		// Update is called once per frame
-		void Update () {
+		void FixedUpdate () {
+			if (!isLocalPlayer && rb != null) {
+				ac.SetAnimationFromSpeed (rb.velocity.x);
+				return;
+			}
 			if (rb == null) return;
 
 			// Calcule une acceleration en fonction de l'entrée utilisateur et de l'accelération configurée pour l'objet

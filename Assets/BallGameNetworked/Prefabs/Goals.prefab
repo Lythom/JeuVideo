@@ -161,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1070233684806304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ec96c8cb1c7494dae389744c7f4fea, type: 3}
+  m_Script: {fileID: 11500000, guid: 38735ab457b4253408c9f81f3739eb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ballTag: orangeball
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1544269487459666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ec96c8cb1c7494dae389744c7f4fea, type: 3}
+  m_Script: {fileID: 11500000, guid: 38735ab457b4253408c9f81f3739eb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ballTag: blueball

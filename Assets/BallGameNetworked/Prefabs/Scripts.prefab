@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4374437731025708}
   - component: {fileID: 114606603982801178}
+  - component: {fileID: 114852566439866464}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -58,3 +59,35 @@ MonoBehaviour:
   ballSetPrefab: {fileID: 1665173274544728, guid: 64ed3895b6497164fba782bcd75e70b1,
     type: 2}
   initialBallPos: {x: 3, y: 0}
+--- !u!114 &114852566439866464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1751654924367772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 24
+    i1: 108
+    i2: 111
+    i3: 48
+    i4: 44
+    i5: 183
+    i6: 171
+    i7: 132
+    i8: 153
+    i9: 171
+    i10: 149
+    i11: 110
+    i12: 18
+    i13: 249
+    i14: 42
+    i15: 169
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

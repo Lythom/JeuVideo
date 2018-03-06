@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor.Sprites;
 using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
 
@@ -278,7 +276,7 @@ namespace UnityEditor
 				EditorGUI.BeginChangeCheck();
 				int newLength = EditorGUI.IntField(new Rect(rect.xMin + k_LabelWidth, y, rect.width - k_LabelWidth, k_SingleLineHeight), tilingRule.m_Sprites.Length);
 				if (EditorGUI.EndChangeCheck())
-					Array.Resize(ref tilingRule.m_Sprites, Math.Max(newLength, 1));
+					System.Array.Resize(ref tilingRule.m_Sprites, Mathf.Max(newLength, 1));
 				y += k_SingleLineHeight;
 
 				for (int i = 0; i < tilingRule.m_Sprites.Length; i++)

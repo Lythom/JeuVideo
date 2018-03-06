@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 namespace UnityEngine
 {
-	[Serializable]
+	[System.Serializable]
 	[CreateAssetMenu]
 	public class RuleTile : TileBase
 	{
@@ -13,7 +12,7 @@ namespace UnityEngine
 		public NeighborType m_NeighborType;
 		public enum NeighborType { Self, AnyTile }
 
-		[Serializable]
+		[System.Serializable]
 		public class TilingRule
 		{
 			public Neighbor[] m_Neighbors;

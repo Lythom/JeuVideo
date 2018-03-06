@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,7 +9,7 @@ using UnityEngine;
 
 namespace UnityEngine.Tilemaps
 {
-	[Serializable]
+	[System.Serializable]
 	public class TerrainTile : TileBase
 	{
 		[SerializeField]

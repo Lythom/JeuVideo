@@ -1,7 +1,4 @@
-﻿
-using System;
-
-namespace TweenCore
+﻿namespace TweenCore
 {
 	public enum Direction:int
 	{

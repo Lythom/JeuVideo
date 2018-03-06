@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using UnityEngine;
 
 namespace TweenCore
@@ -39,7 +39,7 @@ namespace TweenCore
 			}
 		}
 	
-		public FloatChange MapFloatChange(Func<float, float>func)
+		public FloatChange MapFloatChange(System.Func<float, float>func)
 		{
 			return new FloatChange(func(Previous), func(Current));
 		}
@@ -54,10 +54,10 @@ namespace TweenCore
 					return (Previous <= threshold && threshold < Current) || (Current <= threshold && threshold < Previous);
 			}
 	    	
-			throw new Exception("BoundaryMode must be High or Low.");
+			throw new System.Exception("BoundaryMode must be High or Low.");
 		}
 	
-		public void HandlePart(float from, float to, Action<FloatChangePart> updatePart)
+		public void HandlePart(float from, float to, System.Action<FloatChangePart> updatePart)
 		{
 			if (
 				(
@@ -80,7 +80,7 @@ namespace TweenCore
 			float firstPartFrom,
 			float firstPartTo,
 			int repeatLimit,
-			Action<FloatChangeRepeatPart> updateRepeatPart
+			System.Action<FloatChangeRepeatPart> updateRepeatPart
 		)
 		{
 			if (firstPartFrom != firstPartTo) {
@@ -134,7 +134,7 @@ namespace TweenCore
 		public void HandleTimelinePart(
 			float timelineFrom,
 			float timelineTo,
-			Timeline<Action<FloatChangeTimelinePart>> updatePartTimeline)
+			Timeline<System.Action<FloatChangeTimelinePart>> updatePartTimeline)
 		{
 			if (timelineFrom != timelineTo) {
 				var p = Previous.InverseLerp(timelineFrom, timelineTo);

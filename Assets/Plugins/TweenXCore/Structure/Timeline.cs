@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TweenCore
 {
@@ -21,7 +19,7 @@ namespace TweenCore
 		public Timeline<T> Add(T data, float weight = 1.0f)
 		{
 			if (weight <= 0) {
-				throw new Exception("weight must be positive number");
+				throw new System.Exception("weight must be positive number");
 			}
 			if (dataArray.Count == 0) {
 				TotalWeight = weight;
@@ -36,7 +34,7 @@ namespace TweenCore
 		public TimelineSearchResult<T> Search(float rate, BoundaryMode boundaryMode = BoundaryMode.High)
 		{
 			if (dataArray.Count == 0) {
-				throw new Exception("timeline is not initialized");
+				throw new System.Exception("timeline is not initialized");
 			}
 	
 			var searchResult = weightArray.FloatBinarySearch(rate * TotalWeight, boundaryMode);
@@ -65,7 +63,7 @@ namespace TweenCore
 		public T DataAt(int index)
 		{
 			if (dataArray.Count == 0) {
-				throw new Exception("timeline is not initialized");
+				throw new System.Exception("timeline is not initialized");
 			}
 			return dataArray[index];
 		}

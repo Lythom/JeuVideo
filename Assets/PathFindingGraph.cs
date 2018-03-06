@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -78,7 +77,7 @@ public static class PathFindingGraph {
     // explore brutallement tous les chemins de profondeur maxlevel
     public static void Crawl (int maxlevel, List<Node> path) {
 
-        Debug.Log (String.Join ("->", path.Select (node => node.name).ToArray ()));
+        Debug.Log (string.Join ("->", path.Select (node => node.name).ToArray ()));
         if (maxlevel == 0) return;
 
         Destination[] dests = path.Last ().destinations;

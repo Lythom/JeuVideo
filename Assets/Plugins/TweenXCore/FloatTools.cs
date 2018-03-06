@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace TweenCore
@@ -50,7 +49,7 @@ namespace TweenCore
 			return p - Mathf.Floor(p);
 		}
 		
-		public static float Shake(this float rate, float center, Func<float> randomFunc)
+		public static float Shake(this float rate, float center, System.Func<float> randomFunc)
 		{
 			if (randomFunc == null)
 				randomFunc = (() => UnityEngine.Random.value);
@@ -81,14 +80,14 @@ namespace TweenCore
 		///<summary>
 		/// Round trip motion that goes from 0.0 to 1.0 and returns to 0.0 in the reverse playback movement.
 		///</summary>
-		public static float Yoyo(this float rate, Func<float, float> easing)
+		public static float Yoyo(this float rate, System.Func<float, float> easing)
 		{
 			return easing(((rate < 0.5f) ? rate : (1 - rate)) * 2);
 		}
 		///<summary>
 		/// Round trip motion that goes from 0.0 to 1.0 and returns to 0.0 with the movement in which the moving direction is reversed.
 		///</summary>
-		public static float Zigzag(this float rate, Func<float, float> easing)
+		public static float Zigzag(this float rate, System.Func<float, float> easing)
 		{
 			return (rate < 0.5f) ? easing(rate * 2) : 1 - easing((rate - 0.5f) * 2);
 		}
@@ -102,8 +101,8 @@ namespace TweenCore
 		///</summary>
 		public static float MixEasing(
 			float rate,
-			Func<float, float> easing1,
-			Func<float, float> easing2,
+			System.Func<float, float> easing1,
+			System.Func<float, float> easing2,
 			float easing2Strength)
 		{
 			return easing2Strength.Lerp(
@@ -116,9 +115,9 @@ namespace TweenCore
 		///</summary>
 		public static float CrossfadeEasing(
 			float rate,
-			Func<float, float> easing1,
-			Func<float, float> easing2,
-			Func<float, float> easing2StrengthEasing,
+			System.Func<float, float> easing1,
+			System.Func<float, float> easing2,
+			System.Func<float, float> easing2StrengthEasing,
 			float easing2StrengthStart = 0.0f,
 			float easing2StrengthEnd = 1.0f)
 		{
@@ -133,8 +132,8 @@ namespace TweenCore
 		
 		public static float ConnectEasing(
 			float time,
-			Func<float, float> easing1,
-			Func<float, float> easing2,
+			System.Func<float, float> easing1,
+			System.Func<float, float> easing2,
 			float switchTime = 0.5f,
 			float switchValue = 0.5f
 		)
@@ -148,8 +147,8 @@ namespace TweenCore
 		
 		public static float oneTwoEasing(
 			float time,
-			Func<float, float> easing1,
-			Func<float, float> easing2,
+			System.Func<float, float> easing1,
+			System.Func<float, float> easing2,
 			float switchTime = 0.5f)
 		{
 			if (time < switchTime) {
@@ -203,7 +202,7 @@ namespace TweenCore
 		public static float Polyline(this float rate, IList<float> values)
 		{
 			if (values.Count < 2) {
-				throw new Exception("points Count must be more than 2");
+				throw new System.Exception("points Count must be more than 2");
 			} else {
 				var max = values.Count - 1;
 				var scaledRate = rate * max;
@@ -237,7 +236,7 @@ namespace TweenCore
 		public static float Bezier(this float rate, IList<float> values)
 		{
 			if (values.Count < 2) {
-				throw new Exception("points Count must be more than 2");
+				throw new System.Exception("points Count must be more than 2");
 			} else if (values.Count == 2) {
 				return Lerp(rate, values[0], values[1]);
 			} else if (values.Count == 3) {
@@ -266,7 +265,7 @@ namespace TweenCore
 		public static float UniformQuadraticBSpline(this float rate, IList<float> values)
 		{
 			if (values.Count < 2) {
-				throw new Exception("points Count must be more than 2");
+				throw new System.Exception("points Count must be more than 2");
 			} else if (values.Count == 2) {
 				return Lerp(rate, values[0], values[1]);
 			} else {

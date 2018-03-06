@@ -26,8 +26,6 @@ GameObject:
   - component: {fileID: 58378908657873122}
   - component: {fileID: 50536538861930222}
   - component: {fileID: 114466735929098810}
-  - component: {fileID: 114935469674231084}
-  - component: {fileID: 114693160252562794}
   m_Layer: 0
   m_Name: lionPhysics
   m_TagString: Untagged
@@ -71,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1669660093930596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.121025, y: 2.395005, z: 0}
+  m_LocalPosition: {x: -2.4861245, y: 0.27093077, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4301607172471462}
@@ -181,59 +179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationInFrames: 20
   amplitudeInDeg: 20
---- !u!114 &114693160252562794
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1669660093930596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 2
-  m_SendInterval: 0.033333335
-  m_SyncRotationAxis: 0
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
---- !u!114 &114935469674231084
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1669660093930596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 142
-    i1: 188
-    i2: 97
-    i3: 231
-    i4: 217
-    i5: 201
-    i6: 191
-    i7: 52
-    i8: 57
-    i9: 176
-    i10: 145
-    i11: 23
-    i12: 134
-    i13: 189
-    i14: 187
-    i15: 181
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!212 &212351524801639044
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -311,7 +256,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -23
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 08138aeb56fba23468375afa40dfc4af, type: 3}
   m_Color: {r: 0.5147059, g: 0.85943204, b: 1, a: 1}
   m_FlipX: 0

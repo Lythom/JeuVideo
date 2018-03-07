@@ -19,31 +19,31 @@ public class MyNode {
 	public float cout;
     public float heuristique;
     public MyDestination[] destinations;
-	public bool passage;
+	public int num;
 
-    public MyNode (float[] n, float h) {
+    public MyNode (int tnum, float[] n, float h) {
         position = n;		// position du noeud [x, y]
 		cout = 0;			// total entre g et h
         heuristique = h; 	// distance entre le noeud courant et la fin (h) (vole d'oiseau)
         destinations = null;
 		parent = null;
-		passage = false;
+		num = tnum;			// profondeur dans le jeux
     }
-	public MyNode(float[] n, float h , float f){
+	public MyNode(int tnum, float[] n, float h , float f){
 		parent = null;
         position = n;		// position du noeud [x, y]
 		cout = f;			// total entre g et h
         heuristique = h; 	// distance entre le noeud et la fin (h)
         destinations = null;
-		passage = false;
+		num = tnum;
 	}
-	public MyNode(float[] n, float h , float f, MyNode myNodeParent){
+	public MyNode(int tnum, float[] n, float h , float f, MyNode myNodeParent){
 		parent = myNodeParent;
         position = n;		// position du noeud [x, y]
 		cout = f;			// total entre g et h
         heuristique = h; 	// distance entre le noeud et la fin (h)
         destinations = null;
-		passage = false;
+		num = tnum;
 	}
 }
 
@@ -55,9 +55,12 @@ public class pathfinding : MonoBehaviour {
 
 	private MyNode nodeDuMob;
 
+	private int numEnCours = 0;
+	
+
 	void Start () {
 		// a l'init ont définit au mob le chemin a prendre
-		nodeDuMob = exploreWithPathFinding();
+		nodeDuMob = exploreWithPathFinding(new List<MyNode>());
 	}
 	
 
@@ -66,7 +69,7 @@ public class pathfinding : MonoBehaviour {
 			float[] direction = directionAPrendreDuMob();
 			mouve(direction[0], direction[1]);
 		}
-		//nodeDuMob = exploreWithPathFinding();
+		nodeDuMob = exploreWithPathFinding(new List<MyNode>());
 	}
 
 	// grace a la node genrerer depuis la fonction exploreWithPathFinding()
@@ -78,29 +81,40 @@ public class pathfinding : MonoBehaviour {
 		MyNode node = nodeDuMob;
 		
 		float[] direction = new float[2];
+		direction[0] = 0;
+		direction[1] = 0;
 		while(stop){
-			Debug.Log("position : " + node.position[0]+ " "+node.position[1] + " "+node.passage +" ");
-			if(node.parent == null || node.passage == true){
-				Debug.Log("if");
-				// ont declare etre deja passer par ici pour le prochain tour atteindre le noeud précédent
-				node.passage = true;
-				
-				direction[0] = node.position[0];
-				direction[1] = node.position[1];
-				
+			if(node.parent.num == numEnCours){
+				//Debug.Log(node.position[0] + " "+node.position[1]);
+
+				if(leMobTaTape(node, personnage.transform.position.x, personnage.transform.position.y)){
+					return direction;
+				}
+				if(node.position[0] > this.transform.position.x) direction[0] = diffPOs(node.position[0], this.transform.position.x);
+				if(node.position[0] < this.transform.position.x) direction[0] = -diffPOs(node.position[0], this.transform.position.x);
+				if(node.position[1] > this.transform.position.y) direction[1] = diffPOs(node.position[1], this.transform.position.y);
+				if(node.position[1] < this.transform.position.y) direction[1] = -diffPOs(node.position[1], this.transform.position.y);
+				// tant que notre mob n'est pas arriver a ca position ont continue a le faire avancer
+				if(bienArriver(node.position[0], node.position[1])){
+					numEnCours = node.num;
+				}
 				// sortie de la boucle
 				stop = false;
 			}else{
-				Debug.Log("else");
-			//	Debug.Log("position : " + node.position[0]+ " "+node.position[0]);
-			//	Debug.Log("position parent : " + node.parent.position[0]+ " "+node.parent.position[0]);
 				node = node.parent;
 			}
 			
 		}
-		//Debug.Log("direction : "+ direction[0]+ " "+ direction[1] + "soit : "+" || mob : "+this.transform.position.x + " "+this.transform.position.y + " || perso : "+personnage.position.x + " "+personnage.position.y);
-			// renvoyer 1 ou -1 pour x et y
+		// renvoyer 1 ou -1 pour x et y
 		return direction;
+	}
+	public float diffPOs(float f1, float f2){
+		return Mathf.Max(f1,f2) - Mathf.Min(f1,f2);
+	}
+
+	public bool bienArriver(float x, float y){
+		if(x.Equals(Mathf.Round(this.transform.position.x*100f)/100f) && y.Equals(Mathf.Round(this.transform.position.y*100f)/100f)) return true;
+		return false;
 	}
 
 	/*public int[] directionAPrendre(float posEnCoursX, float posEnCoursY){
@@ -125,74 +139,59 @@ public class pathfinding : MonoBehaviour {
 		return direction;
 	}*/
 
-	public MyNode exploreWithPathFinding(){
+	public MyNode exploreWithPathFinding(List<MyNode> mesNodesListFerme){
 	
-		//Cette liste est représente les nodes déjà parcourue
-		List<MyNode> mesNodesListFerme = new List<MyNode>();
-
 		// Ajout de mon premier noeud (représente le mob)
 		float[] pathPos = new float[2];
 		pathPos[0] = this.transform.position.x;
 		pathPos[1] = this.transform.position.y;
 		
-		MyNode pathMyNode = new MyNode(pathPos, calculHeuristique(this.transform.position.x, this.transform.position.y, personnage.position.x, personnage.position.y));
+		MyNode pathMyNode = new MyNode(0, pathPos, calculHeuristique(this.transform.position.x, this.transform.position.y, personnage.position.x, personnage.position.y));
 		mesNodesListFerme.Add(pathMyNode);
-
-		//Debug.Log("node position : " + pathMyNode.position[0] + " " + pathMyNode.position[1]);
 		bool tape = true;
-		int i = 0;
 		while(tape){
-			//Debug.Log("tour : " + i);
-			i++;
 
 			List<MyNode> pathMesNodes;
 			MyNode pathMaNodesAvecDirections;
 			MyNode pathMyNextNode;
-
 			// Ajout des nodes suivantes + les directions vers les nodes
 			pathMesNodes = addNodeSuivante(pathMyNode);
 			
 			pathMaNodesAvecDirections = addDirectionToMyNode(pathMyNode, pathMesNodes);
-			//Debug.Log("pathMaNodesAvecDirections length " + pathMaNodesAvecDirections.destinations.Length);
 			
 			// ajouter la node parente au enfant 			
 			pathMaNodesAvecDirections = addParent(pathMaNodesAvecDirections, pathMesNodes);
 			
 			// choix de la node suivante (celle qui a le cout le plus faible)
 			pathMyNextNode = choixNodeSuivante(pathMaNodesAvecDirections, mesNodesListFerme);
-			//Debug.Log("pathMyNextNode length " + pathMyNextNode.parent.destinations.Length);
+			if(pathMyNextNode == null){
+				tape = true;
+				exploreWithPathFinding(mesNodesListFerme);
+			}else{
+				// une fois une node calculer ont l'ajoute a la liste déjà parcourue
+				mesNodesListFerme.Add(pathMyNextNode);
 
-			// if(pathMyNextNode.parent != null){
-			// 	Debug.Log("node position next dest length" + pathMyNextNode.parent.destinations.Length);
-			// }
-			//Debug.Log("node position next : " + pathMyNextNode.position[0] + " " + pathMyNextNode.position[1] + " arriver : "+personnage.position.x + " "+ personnage.position.y);
+				// passage a la variable pour continuer la boucle
+				pathMyNode = pathMyNextNode;
 
-			// une fois une node calculer ont l'ajoute a la liste déjà parcourue
-			mesNodesListFerme.Add(pathMyNextNode);
-
-			// passage a la variable pour continuer la boucle
-			pathMyNode = pathMyNextNode;
-
-			// si arrive au personnage ont garde le chemin
-			if(leMobTaTape(pathMyNextNode, personnage.position.x, personnage.position.y)){
-				Debug.Log("tape");
-				// jackpot on retourne ont sort de la boucle
-				tape = false;
+				Debug.Log(pathMyNextNode.position[0] + " "+pathMyNextNode.position[1]);
+				// si arrive au personnage ont garde le chemin
+				if(leMobTaTape(pathMyNextNode, personnage.position.x, personnage.position.y)){
+					// jackpot on retourne ont sort de la boucle
+					tape = false;
+				}
 			}
-		}
-		// pathMyNode contient le chemin (grace aux parents) pour aller vers le personnage
-		return pathMyNode;
 
+			
+		}
+		
+		return pathMyNode;
 	}
 
 	// ont verifie si nous somme arrivé a la position du personnage 
 	// ont vérifie sur la position personne + unPas (le deplacement ce fait unPas par unPas, ont peut donc ne pas tomber pile poile sur la position du personnage)
 	// return true si ont y est
 	public bool leMobTaTape(MyNode myNode, float persoX, float persoY){
-		// Debug.Log("x : node en cours : "+myNode.position[0] + " arriver : "+persoX);
-
-		// Debug.Log("y : node en cours : "+myNode.position[1] + " arriver : "+persoY);
-
 		if(Mathf.Abs(myNode.position[0]-persoX) < unPas && Mathf.Abs(myNode.position[1]-persoY) < unPas){	
 			return true;
 		}
@@ -205,7 +204,6 @@ public class pathfinding : MonoBehaviour {
 	
 		for (int i = 0; i < maNode.destinations.Length; i++)
 		{
-			//Debug.Log(maNode.destinations[i].node.position[0]+ " "+maNode.destinations[i].node.position[1] + " cout : " +maNode.destinations[i].node.cout);
 			if(maNode.destinations[i].node.cout < maxCout){
 				// si deja dans la liste ferme ont y repasse pas
 				if(detectListFerme(maNode.destinations[i].node, mesNodesListFerme)){
@@ -238,8 +236,6 @@ public class pathfinding : MonoBehaviour {
 		retoury = Mathf.Max(tempoPosY,tempoPersoY) -  Mathf.Min(tempoPosY,tempoPersoY);
 		if(retoury < 0) retoury = retoury*-1;
 
-		//Debug.Log("perso pos : "+persoX+" - "+persoY + " | " +posx+" - "+posy + " mob ||| resultat = " +(retourx+retoury) );
-
 		return retourx+retoury;
 	}
 	
@@ -253,7 +249,7 @@ public class pathfinding : MonoBehaviour {
 		mesPositionsfuturNodes.ForEach(items =>{
 			// if de la collision == true pas de colision sinon ont ne créer pas de node // 
 			if(detectColision(items)){
-				MyNode myNodeNext = new MyNode(items, calculHeuristique(items[0], items[1], personnage.position.x, personnage.position.y));
+				MyNode myNodeNext = new MyNode(myNode.num+1, items, calculHeuristique(items[0], items[1], personnage.position.x, personnage.position.y));
 				mesNodes.Add(myNodeNext);
 			}
 		});
@@ -307,8 +303,6 @@ public class pathfinding : MonoBehaviour {
 
 		float dest = 0;
 		
-	//	Debug.Log(myNode.position[0] + " " + myNode.position[1]);
-	//	Debug.Log(myNode.parent.destinations.Length);
 		for(int i = 0; i < myNode.parent.destinations.Length; i++){
 			if(myNode.parent.destinations[i].Equals(NodeEnCours)){
 				dest = myNode.parent.destinations[i].distance;
@@ -321,12 +315,11 @@ public class pathfinding : MonoBehaviour {
 	// params : une node et les nodes qui lui doivent être liée
 	// ajoute les directions entres les nodes
 	public MyNode addDirectionToMyNode(MyNode myNode, List<MyNode> mesNodes){
-		MyNode MyNodeReturn = new MyNode(myNode.position, myNode.heuristique, myNode.cout, myNode.parent);
+		MyNode MyNodeReturn = new MyNode(myNode.num, myNode.position, myNode.heuristique, myNode.cout, myNode.parent);
 		MyDestination[] listdestinations = new MyDestination[mesNodes.Count];
 
 		// pour chaque node ont ajoute une destinations pour l'atteindre avec le calcul de la distance
 		for(int i = 0; i < mesNodes.Count; i++){
-		//	Debug.Log(myNode.position[0] + " " + myNode.position[1] + " || "+ i + " || " + mesNodes[i].position[0] + " " + mesNodes[i].position[1]);
 			float dist = calculDistance(myNode, mesNodes[i]);
 			// mise a jour du cout
 			mesNodes[i].cout = mesNodes[i].heuristique + dist;
@@ -371,7 +364,7 @@ public class pathfinding : MonoBehaviour {
 			x = Mathf.FloorToInt(futurPosition[0]);
 		}
 		int y = 0;
-		if(futurPosition[0] < 0){
+		if(futurPosition[1] < 0){
 			y = Mathf.CeilToInt(futurPosition[1]);
 		}else{
 			y = Mathf.FloorToInt(futurPosition[1]);
@@ -386,21 +379,23 @@ public class pathfinding : MonoBehaviour {
 	}
 
 	// Debut deplacement du mob // 
-	public float acceleration = 8f; // unit per second, per second
-	public float maxSpeed = 4f; // unit per second
+	public float acceleration = 1f; // unit per second, per second
+	public float maxSpeed = 1f; // unit per second
 	public Vector3 currentSpeed;
 	public void mouve(float x, float y){
+		
+		this.transform.position += new Vector3(x,y,0);
 
 		// de -1 a 1 le retour de inputgetaxis
-		Vector3 currentAcceleration = new Vector3 (
-			x * acceleration,
-			y * acceleration,
-			0
-		);
-		currentSpeed += currentAcceleration * Time.deltaTime;
-		currentSpeed = Vector3.ClampMagnitude(currentSpeed, maxSpeed);
-		if (currentAcceleration.magnitude == 0) currentSpeed *= 0.8f;
-		this.transform.position += currentSpeed * Time.deltaTime;
+		// Vector3 currentAcceleration = new Vector3 (
+		// 	x * acceleration,
+		// 	y * acceleration,
+		// 	0
+		// );
+		// currentSpeed += currentAcceleration * Time.deltaTime;
+		// currentSpeed = Vector3.ClampMagnitude(currentSpeed, maxSpeed);
+		// if (currentAcceleration.magnitude == 0) currentSpeed *= 0.8f;
+		// this.transform.position += currentSpeed * Time.deltaTime;
 	}
 	// Fin deplacement du mob //
 }

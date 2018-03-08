@@ -19,11 +19,11 @@ public class UserItem : MonoBehaviour {
 			if (type == "defense"){
 				gameManager.GetComponent<GameManagerMain>().fireDefense += 10;
 			} else {
-				gameManager.GetComponent<GameManagerMain>().frostDefense += 10;
+				gameManager.GetComponent<GameManagerMain>().fireAttack += 10;
 			}
 		} else {
 			if (type == "defense"){
-				gameManager.GetComponent<GameManagerMain>().fireAttack += 10;
+				gameManager.GetComponent<GameManagerMain>().frostDefense += 10;
 			} else {
 				gameManager.GetComponent<GameManagerMain>().frostAttack += 10;
 			}

@@ -84,6 +84,7 @@ public class pathfinding : MonoBehaviour {
 		direction[0] = 0;
 		direction[1] = 0;
 		while(stop){
+			if(node.parent == null) return direction;
 			if(node.parent.num == numEnCours){
 				//Debug.Log(node.position[0] + " "+node.position[1]);
 

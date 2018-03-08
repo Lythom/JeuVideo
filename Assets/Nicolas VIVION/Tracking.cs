@@ -75,6 +75,8 @@ public class Tracking : MonoBehaviour {
 	public void prepareMatrice(){
 		matrice.Add("0_0", grid.transform.GetChild(0).gameObject);
 		matrice.Add("1_0", grid.transform.GetChild(1).gameObject);
+		matrice.Add("0_1", grid.transform.GetChild(2).gameObject);
+		matrice.Add("1_1", grid.transform.GetChild(3).gameObject);
 	}
 
 	public string getPositionMatrice(){

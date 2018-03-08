@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour {
 
@@ -57,7 +58,14 @@ public class Finish : MonoBehaviour {
 		}
 		if(isFinalMap() && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
 			inc += 1;
+			if(text[inc] == "Restarting") { 
+				SceneManager.LoadScene("MapLPJ");
+			}
             endText.text = text[inc];
+		}
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			Debug.Log("Quit");
+			Application.Quit();
 		}
 	}
 
@@ -119,6 +127,9 @@ public class Finish : MonoBehaviour {
 		} else {
 			text.Add("You loose for this time... Try again!");
 		}
+
+		text.Add("Press Enter to restart or Escape to quit");
+		text.Add("Restarting");
 
 		endText.text = text[inc];
 		cadreText.sortingOrder = 3;

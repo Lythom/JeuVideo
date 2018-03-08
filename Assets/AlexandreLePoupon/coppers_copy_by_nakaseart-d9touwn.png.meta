@@ -1,0 +1,367 @@
+fileFormatVersion: 2
+guid: 42638a97c6f49434294ea5017d7bc47b
+timeCreated: 1520502233
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: coppers_copy_by_nakaseart-d9touwn_0
+    21300002: coppers_copy_by_nakaseart-d9touwn_1
+    21300004: coppers_copy_by_nakaseart-d9touwn_2
+    21300006: coppers_copy_by_nakaseart-d9touwn_3
+    21300008: coppers_copy_by_nakaseart-d9touwn_4
+    21300010: coppers_copy_by_nakaseart-d9touwn_5
+    21300012: coppers_copy_by_nakaseart-d9touwn_6
+    21300014: coppers_copy_by_nakaseart-d9touwn_7
+    21300016: coppers_copy_by_nakaseart-d9touwn_8
+    21300018: coppers_copy_by_nakaseart-d9touwn_9
+    21300020: coppers_copy_by_nakaseart-d9touwn_10
+    21300022: coppers_copy_by_nakaseart-d9touwn_11
+    21300024: coppers_copy_by_nakaseart-d9touwn_12
+    21300026: coppers_copy_by_nakaseart-d9touwn_13
+    21300028: coppers_copy_by_nakaseart-d9touwn_14
+    21300030: coppers_copy_by_nakaseart-d9touwn_15
+    21300032: coppers_copy_by_nakaseart-d9touwn_16
+    21300034: coppers_copy_by_nakaseart-d9touwn_17
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 231
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 230
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_2
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 226
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_3
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 226
+        width: 36
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_4
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 216
+        width: 80
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_5
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 219
+        width: 97
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_6
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 128
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_7
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 127
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_8
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 123
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_9
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 123
+        width: 36
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_10
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 114
+        width: 80
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_11
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 117
+        width: 97
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_12
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 20
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_13
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 19
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_14
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 15
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_15
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 15
+        width: 36
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_16
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 6
+        width: 80
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coppers_copy_by_nakaseart-d9touwn_17
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 9
+        width: 97
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

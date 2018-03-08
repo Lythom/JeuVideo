@@ -64,7 +64,6 @@ public class Finish : MonoBehaviour {
             endText.text = text[inc];
 		}
 		if(Input.GetKeyDown(KeyCode.Escape)) {
-			Debug.Log("Quit");
 			Application.Quit();
 		}
 	}
@@ -80,11 +79,8 @@ public class Finish : MonoBehaviour {
 	}
 
 	void fight() {
-		// Debug.Log("start fight");
-		// Debug.Log(player.position);
 
 		//Stop character
-		// Debug.Log(move.canMove);
 		move.canMove = false;
 
 		//Teleport character to the center of the map
@@ -95,7 +91,6 @@ public class Finish : MonoBehaviour {
 
 		//Display text
 		text.Add("A dragon is attacking you! You can not run away, you'll have to fight!");
-
 
 		text.Add("The dragon spits fire on you.");
 		if(stats.fireDefense > 0) {

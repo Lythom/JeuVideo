@@ -176,6 +176,7 @@ MonoBehaviour:
   gameManager: {fileID: 1356867759}
   element: Fire
   type: Defense
+  clip: {fileID: 8300000, guid: 8ae21490f07bf5642aca2ed7ef9d0e04, type: 3}
 --- !u!61 &94613119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6491,6 +6492,7 @@ MonoBehaviour:
   gameManager: {fileID: 1356867759}
   element: Frost
   type: Attack
+  clip: {fileID: 8300000, guid: 8ae21490f07bf5642aca2ed7ef9d0e04, type: 3}
 --- !u!61 &760172119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6609,6 +6611,7 @@ MonoBehaviour:
   gameManager: {fileID: 1356867759}
   element: Fire
   type: Attack
+  clip: {fileID: 8300000, guid: 8ae21490f07bf5642aca2ed7ef9d0e04, type: 3}
 --- !u!61 &820397412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27331,6 +27334,7 @@ MonoBehaviour:
   gameManager: {fileID: 1356867759}
   element: Frost
   type: Defense
+  clip: {fileID: 8300000, guid: 8ae21490f07bf5642aca2ed7ef9d0e04, type: 3}
 --- !u!61 &2103005248
 BoxCollider2D:
   m_ObjectHideFlags: 0

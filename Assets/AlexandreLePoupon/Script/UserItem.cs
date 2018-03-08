@@ -13,6 +13,8 @@ public class UserItem : MonoBehaviour {
 	 */
 	public string type;
 
+	public AudioClip clip;
+
 	private void OnTriggerEnter2D () {
 		Debug.Log("Item picked !");
 		if (element == "Fire"){
@@ -28,6 +30,7 @@ public class UserItem : MonoBehaviour {
 				gameManager.GetComponent<GameManagerMain>().frostAttack += 10;
 			}
 		}
+		AudioSource.PlayClipAtPoint(clip, transform.position);
 		Destroy(gameObject);
 	}
 }

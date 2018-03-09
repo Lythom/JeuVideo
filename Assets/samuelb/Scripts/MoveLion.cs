@@ -12,6 +12,7 @@ public class MoveLion : MonoBehaviour {
 
 	private AnimationCourse ac;
 
+
 	// Use this for initialization
 	void Start () {
 		// Récupère une référence au script AnimationCourse attaché au même GameObject

@@ -127,7 +127,7 @@ namespace lepoupon {
 			}
 
 			if(!dead) {
-				text.Add("You win this fight, well play!");
+				text.Add("You win this fight, well played!");
 			} else {
 				text.Add("You loose for this time... Try again!");
 			}

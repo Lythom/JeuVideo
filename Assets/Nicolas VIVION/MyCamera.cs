@@ -29,26 +29,25 @@ namespace vivion {
 		// Update is called once per frame
 		void Update () {
 		
-		if(matrice.ContainsKey(getPositionMatrice())){
-			if(personnage.position.y < matrice[getPositionMatrice()].transform.position.y - tailleMapY){
-				changePositionMatrice(0,-1);
-				deplaceCamera();
+			if(matrice.ContainsKey(getPositionMatrice())){
+				if(personnage.position.y < matrice[getPositionMatrice()].transform.position.y - tailleMapY){
+					changePositionMatrice(0,-1);
+					deplaceCamera();
+				}
+				if(personnage.position.y >= matrice[getPositionMatrice()].transform.position.y + tailleMapY){
+					changePositionMatrice(0,1);
+					deplaceCamera();
+				}
+				if(personnage.position.x >= matrice[getPositionMatrice()].transform.position.x + tailleMapX){
+					changePositionMatrice(1,0);
+					deplaceCamera();
+				}
+				if(personnage.position.x < matrice[getPositionMatrice()].transform.position.x - tailleMapX){
+					changePositionMatrice(-1,0);
+					deplaceCamera();
+				}
 			}
-			if(personnage.position.y >= matrice[getPositionMatrice()].transform.position.y + tailleMapY){
-				changePositionMatrice(0,1);
-				deplaceCamera();
-			}
-			if(personnage.position.x >= matrice[getPositionMatrice()].transform.position.x + tailleMapX){
-				changePositionMatrice(1,0);
-				deplaceCamera();
-			}
-			if(personnage.position.x < matrice[getPositionMatrice()].transform.position.x - tailleMapX){
-				changePositionMatrice(-1,0);
-				deplaceCamera();
-			}
-		}
 			
-
 		}
 
 		public void deplaceCamera(){

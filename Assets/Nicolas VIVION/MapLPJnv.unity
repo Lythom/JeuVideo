@@ -26334,12 +26334,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838307911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2ac83efffb9a64ca4f276ec43ad795, type: 3}
+  m_Script: {fileID: 11500000, guid: 20a741b979d40524d891d8763390af86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   personnage: {fileID: 1968092356}
-  acceleration: 1
-  maxSpeed: 1
+  enCours: 0
   currentSpeed: {x: 0, y: 0, z: 0}
 --- !u!50 &1838307913
 Rigidbody2D:
@@ -26437,7 +26436,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1838307911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.65, y: -2.49, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 0.93450654, y: 0.9955442, z: 0.80942386}
   m_Children: []
   m_Father: {fileID: 0}
@@ -26514,7 +26513,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1968092354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.18, y: 2.58, z: 0}
+  m_LocalPosition: {x: 4.54, y: -2.41, z: 0}
   m_LocalScale: {x: 0.93450654, y: 0.9955442, z: 0.80942386}
   m_Children: []
   m_Father: {fileID: 0}

@@ -17,8 +17,8 @@ public class Track : MonoBehaviour {
 		// attention à bien conserver la position Z actuelle
 		// on ne poursuit que les positions x et y
 		Vector3 targetPos = new Vector3 (
-			target.position.x + offset.x,
-			target.position.y + offset.y,
+			(target.position.x + offset.x),
+			(target.position.y + offset.y),
 			this.transform.position.z
 		);
 

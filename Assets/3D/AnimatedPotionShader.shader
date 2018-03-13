@@ -39,6 +39,7 @@ Shader "Custom/AnimatedPotionShader" {
 			if (insidePotion) {
 				fixed4 c = tex2D (_MainTex, uv_pannedTex) * _Color; //***
 				o.Albedo = c.rgb;
+				//o.Emission = tex2D (_MainTex, IN.uv_MainTex) * _Color;			
 			} else {
 				o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
 			}

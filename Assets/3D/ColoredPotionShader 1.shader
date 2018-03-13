@@ -19,7 +19,7 @@ Shader "Custom/ColoredPotionShader" {
 
 		CGPROGRAM
 		// Uses the Labertian lighting model
-		#pragma surface surf Lambert
+		#pragma surface surf Standard
 		#pragma multi_compile_instancing
 
 		sampler2D _MainTex; // The input texture
@@ -29,13 +29,18 @@ Shader "Custom/ColoredPotionShader" {
 			float2 uv_MainTex;
 		};
 		
-		void surf (Input IN, inout SurfaceOutput o) {
+		void surf (Input IN, inout SurfaceOutputStandard o) {
 
 			if (IN.uv_MainTex.y < 0.35 && IN.uv_MainTex.x < 0.3) {
 				fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color; //***
 				o.Albedo = c.rgb;
+				o.Metallic = 0;
+				o.Smoothness = 0;
+				// o.Emission = tex2D (_MainTex, IN.uv_MainTex) * _Color * 2;
 			} else {
 				o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
+				o.Metallic = 0.2;
+				o.Smoothness = 0.8;
 			}
 			
 		}

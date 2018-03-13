@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
 namespace vivion {
 	public class NodeAstar {
 		public Vector2Int position;
@@ -27,12 +26,12 @@ namespace vivion {
 
 		private List<Vector2Int> deplacement = null;
 
-		public int enCours = 0;
+		private int enCours = 0;
 
 		private GameObject myCam;
 		private Tracking myScript;
 
-		// Use this for initialization
+
 		void Start () {
 			myCam = GameObject.FindWithTag("MainCamera");
 			myScript = (Tracking) myCam.GetComponent(typeof(Tracking));
@@ -77,7 +76,7 @@ namespace vivion {
 		private float GetFrameDurationInSecMob () {
             return 1f/5;
         }
-	
+		
 		public List<Vector2Int> exploreWithPathFinding(Vector2Int origin, Vector2Int target){
 			List<NodeAstar> lOuverte = new List<NodeAstar>();
 			List<NodeAstar> lFerme = new List<NodeAstar>();
@@ -166,7 +165,6 @@ namespace vivion {
 			
 			GameObject map = myScript.mapEnCour();
 			
-
 			NodeAstar[] nodes = new NodeAstar[4];
 
 			Vector2Int up = current.position + Vector2Int.up;

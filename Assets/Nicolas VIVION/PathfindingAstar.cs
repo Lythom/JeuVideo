@@ -24,6 +24,8 @@ namespace vivion {
 
 		public Transform personnage;
 
+		public GameObject mapMob;		
+
 		private List<Vector2Int> deplacement = null;
 
 		private int enCours = 0;
@@ -35,48 +37,57 @@ namespace vivion {
 		void Start () {
 			myCam = GameObject.FindWithTag("MainCamera");
 			myScript = (Tracking) myCam.GetComponent(typeof(Tracking));
-			Vector2Int origin = WorldToCell(new Vector2(this.transform.position.x, this.transform.position.y));
-			Vector2Int target = WorldToCell(new Vector2(personnage.position.x, personnage.position.y));
-			deplacement = exploreWithPathFinding(origin, target);
+			// Vector2Int origin = WorldToCell(new Vector2(this.transform.position.x, this.transform.position.y));
+			// Vector2Int target = WorldToCell(new Vector2(personnage.position.x, personnage.position.y));
+			// deplacement = exploreWithPathFinding(origin, target);
 		}
 		
         private float accumulateur = 0;
         private float accMob = 0;
 		
 		void Update () {
-			transform.rotation = Quaternion.Euler(0,0,0);
+			if(inMapMob()){
 
-     		float frameDurationMob = GetFrameDurationInSecMob();
-            accMob += Time.deltaTime;
-            while(accMob > frameDurationMob) {
+				transform.rotation = Quaternion.Euler(0,0,0);
 
-				if(deplacement != null && enCours < deplacement.Count){
-					Vector2Int direction = deplacement[enCours];
-					enCours++;
-					mouve(direction);
+				float frameDurationMob = GetFrameDurationInSecMob();
+				accMob += Time.deltaTime;
+				while(accMob > frameDurationMob) {
+
+					if(deplacement != null && enCours < deplacement.Count){
+						Vector2Int direction = deplacement[enCours];
+						enCours++;
+						mouve(direction);
+					}
+					accMob -= frameDurationMob;
 				}
-				accMob -= frameDurationMob;
-			}
 
-     		float frameDuration = GetFrameDurationInSec();
-            accumulateur += Time.deltaTime;
-            while (accumulateur > frameDuration && frameDuration > 0) {
-				Vector2Int origin = WorldToCell(new Vector2(this.transform.position.x, this.transform.position.y));
-				Vector2Int target = WorldToCell(new Vector2(personnage.position.x, personnage.position.y));
-				deplacement = exploreWithPathFinding(origin, target);
-				enCours = 0;
-                accumulateur -= frameDuration;
-			}
+				float frameDuration = GetFrameDurationInSec();
+				accumulateur += Time.deltaTime;
+				while (accumulateur > frameDuration && frameDuration > 0) {
+					Vector2Int origin = WorldToCell(new Vector2(this.transform.position.x, this.transform.position.y));
+					Vector2Int target = WorldToCell(new Vector2(personnage.position.x, personnage.position.y));
+					deplacement = exploreWithPathFinding(origin, target);
+					enCours = 0;
+					accumulateur -= frameDuration;
+				}
 
+			}
 		}
-		
+		private bool inMapMob(){
+			if(mapMob.Equals(myScript.mapEnCour())){
+				return true;
+			}
+			return false;
+		}
+
 		private float GetFrameDurationInSec () {
             return 1.5f;
         }
 		private float GetFrameDurationInSecMob () {
             return 1f/5;
         }
-		
+
 		public List<Vector2Int> exploreWithPathFinding(Vector2Int origin, Vector2Int target){
 			List<NodeAstar> lOuverte = new List<NodeAstar>();
 			List<NodeAstar> lFerme = new List<NodeAstar>();

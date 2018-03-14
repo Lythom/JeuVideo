@@ -16,6 +16,7 @@ using UnityEngine.UI;
 		public int frostAttack = 0;
 
 		void Update () {
+			//SBO: oui
 			fireAttackText.text = fireAttack.ToString()+" %";
 			fireDefenseText.text = fireDefense.ToString()+" %";
 			frostAttackText.text = frostAttack.ToString()+" %";

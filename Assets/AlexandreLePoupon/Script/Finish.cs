@@ -35,7 +35,7 @@ namespace lepoupon {
 
 		private GameObject ambienceSound;
 
-		private AudioSourceLoop myAudio;
+		// private AudioSourceLoop myAudio; // SBO: AudioSourceLoop could not be found :(
 
 		// Use this for initialization
 		void Start () {
@@ -43,6 +43,12 @@ namespace lepoupon {
 			dead = false;
 			text = new List<string>();
 
+			// SBO: Préférer une variable public qui sera contribuée via l'éditeur
+			// 		Préférer la forme GetComponent<Type>();
+			// ex:  public GameObjet myCam;
+			//      trackingScript = myCam.GetComponent<Tracking>();
+			// celà évite des erreurs au runtime en vérifiant plus de choses à la compilation.
+			// L'accès par tag est surtout utile quand on peut avoir une instance changeante pour une même fonction à un instant du jeu. ex: la balle de BallGame qui est détruite puis reconstruite au moment du but.
 			myCam = GameObject.FindWithTag("MainCamera");
 			trackingScript = (Tracking) myCam.GetComponent(typeof(Tracking));
 	
@@ -53,7 +59,7 @@ namespace lepoupon {
 			stats = (GameManagerMain) gameManager.GetComponent(typeof(GameManagerMain));
 
 			ambienceSound = GameObject.FindWithTag("Sound");
-			myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));
+			// myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));// SBO: AudioSourceLoop could not be found :(
 		}
 		
 		// Update is called once per frame
@@ -63,6 +69,8 @@ namespace lepoupon {
 				inc = 0;
 				fight();
 			}
+			// SBO préférer un Input mappé que l'utilisateur pour reconfigurer :
+			// Ex: Input.GetButtonDown("Select") qui sera paramétré dans le InputManager.
 			if(isFinalMap() && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
 				inc += 1;
 				if(text[inc] == "Restarting") { 
@@ -76,8 +84,11 @@ namespace lepoupon {
 		}
 
 		bool isFinalMap() {
-			int x = trackingScript.matriceEnCoursX;
-			int y = trackingScript.matriceEnCoursY;
+			// SBO: calcul en fonction du référentiel des cartes
+			// Position / taille = transformation du référentiel scène dans le référentiel scènes
+			// arrondi = la tuile dont le centre est le plus proche du héro
+			int x = Mathf.RoundToInt(myPlayer.transform.position.x / 28);
+			int y = Mathf.RoundToInt(myPlayer.transform.position.y / 16);
 			if(x==1 && y==1) {
 				return true;
 			}else {
@@ -90,13 +101,15 @@ namespace lepoupon {
 			//Stop character
 			move.canMove = false;
 
-			myAudio.setIsBossFight(true);
+			//myAudio.setIsBossFight(true);
 
 			//Teleport character to the center of the map
-			GameObject map = trackingScript.mapEnCour();
-			float x = map.transform.position.x;
-			float y = map.transform.position.y;
-			player.position = new Vector3(x, y, 0);
+			// SBO: quite à ce que ça soit en dur, autant ne pas le cacher
+			// SBO: idéalement, prévoir un gameObejct "BossPosition" qui sera placé à la main et qui servira d'ancre de référence pour chaque carte
+			player.position = new Vector3(28, 16, 0);
+
+			// SBO: OUI ! Les feedbacks sont très clairs et permettent déjà au joueur de savoir comment réussir sur une prochaine partie
+			// Attention pour jeudi après midi : pas sûr que tous les testeurs soient à l'aise avec l'anglais !
 
 			//Display text
 			text.Add("A dragon is attacking you! You can not run away, you'll have to fight!");

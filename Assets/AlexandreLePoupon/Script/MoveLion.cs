@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// SBO: les pbs de collisions viennent de ce script : le déplacement est géré à la main (position affectée en dur) alors que les collisions sont gérés par la physique.
+// => Faire en sorte que le déplacement soit géré par la physique en modifiant acceleration et velocity plutôt que positions.
 public class MoveLion : MonoBehaviour {
 
 	public float acceleration = 8f; // unit per second, per second

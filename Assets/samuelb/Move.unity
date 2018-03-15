@@ -257,12 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548add69c3febb74fac7d0a73f1036c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodes:
-  - {x: -1.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
-  - {x: 2.584587, y: 1.2186029, z: 0}
-  - {x: 1.2764987, y: 2.8239846, z: 0}
-  - {x: -0.5, y: 1.5, z: 0}
+  nodes: []
 --- !u!4 &112772030
 Transform:
   m_ObjectHideFlags: 0
@@ -736,6 +731,15 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: -5, y: 0, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 12
+      m_TileMatrixIndex: 4
+      m_TileColorIndex: 1
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 2
+      m_ColliderType: 1
   - first: {x: 2, y: 0, z: 0}
     second:
       m_TileIndex: 0
@@ -762,7 +766,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b93c9a5e51585814491b4c33445335ec, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: be05a7d1ca620d147a613133130bd619, type: 2}
-  - m_RefCount: 22
+  - m_RefCount: 23
     m_Data: {fileID: 11400000, guid: 3fc881a5c23421d4fb7009e7ed2ce80a, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: cb613eb24d0562b438495aea767524ee, type: 2}
@@ -805,7 +809,7 @@ Tilemap:
     m_Data: {fileID: 21300030, guid: ce437cd381e44f84d9dd1458b40570f0, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300106, guid: ce437cd381e44f84d9dd1458b40570f0, type: 3}
-  - m_RefCount: 8
+  - m_RefCount: 9
     m_Data: {fileID: 21300068, guid: ce437cd381e44f84d9dd1458b40570f0, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300184, guid: ce437cd381e44f84d9dd1458b40570f0, type: 3}
@@ -892,7 +896,7 @@ Tilemap:
       e31: 0
       e32: 9.1835e-41
       e33: 0
-  - m_RefCount: 33
+  - m_RefCount: 34
     m_Data:
       e00: 1
       e01: 0
@@ -913,7 +917,7 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: NaN, g: NaN, b: 0, a: NaN}
-  - m_RefCount: 33
+  - m_RefCount: 34
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2536,6 +2540,8 @@ MonoBehaviour:
   objectToMove: {fileID: 303086405}
   currentPath: {fileID: 112772029}
   pathCollider: {fileID: 453863166}
+  debugPrefab: {fileID: 1743363337383314, guid: 55d44b4d8fd018a46a3b08bcd4006be4,
+    type: 2}
 --- !u!1 &1325935882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,8 +2725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3eda20702f3df4b958c49155f6c2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellWidth: 0.5
-  cellHeight: 0.5
+  cellWidth: 0.25
+  cellHeight: 0.25
 --- !u!1 &2004729450
 GameObject:
   m_ObjectHideFlags: 0

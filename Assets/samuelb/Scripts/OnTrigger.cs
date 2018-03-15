@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class OnTrigger : MonoBehaviour {
 
-	public UnityEvent<Transform[]> actionOnTrigger;
+	public UnityEvent actionOnTrigger;
 
 	private void OnTriggerEnter2D (Collider2D other) {
 		if (actionOnTrigger != null) actionOnTrigger.Invoke ();

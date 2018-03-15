@@ -12,6 +12,8 @@ public class OnClickFindPathAndMove : MonoBehaviour {
 	public Polyline currentPath;
 	public Collider2D pathCollider;
 
+	public GameObject debugPrefab;
+
 	public Vector3? moveTo;
 
 	void Start () { }
@@ -21,11 +23,15 @@ public class OnClickFindPathAndMove : MonoBehaviour {
 			Vector3 origin = objectToMove.position;
 			var v3 = Input.mousePosition;
 			v3.z = 10.0f;
-			Vector3 targetCell = Camera.main.ScreenToWorldPoint(v3);
-			currentPath.nodes = AStar
-				.FindPath (grid.WorldToCell(origin), grid.WorldToCell(targetCell), Collide)
-				.Select (pos => (Vector3) grid.CellToWorld (pos))
-				.ToList<Vector3> ();
+			Vector3 targetCell = Camera.main.ScreenToWorldPoint (v3);
+			var path = AStar
+				.FindPath (grid.WorldToCell (origin), grid.WorldToCell (targetCell), Collide, debugPrefab);
+			if (path != null) {
+				currentPath.nodes = path
+					.Select (pos => (Vector3) grid.CellToWorld (pos))
+					.ToList<Vector3> ();
+			}
+
 			moveTo = null;
 		}
 		if (moveTo.HasValue && Vector2.Distance (moveTo.Value, objectToMove.position) < 0.1f) {
@@ -42,9 +48,8 @@ public class OnClickFindPathAndMove : MonoBehaviour {
 		}
 	}
 
-    private bool Collide(Vector2Int cellPos)
-    {
-        if (pathCollider == null) return false;
-		return pathCollider.OverlapPoint(grid.CellToWorld(cellPos));
-    }
+	private bool Collide (Vector2Int cellPos) {
+		if (pathCollider == null) return false;
+		return pathCollider.OverlapPoint (grid.CellToWorld (cellPos));
+	}
 }

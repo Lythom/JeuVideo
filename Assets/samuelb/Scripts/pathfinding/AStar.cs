@@ -7,6 +7,12 @@ namespace pathfinding {
 
     public class AStar : MonoBehaviour {
         public static List<Vector2Int> FindPath (Vector2Int origin, Vector2Int targetCell, Func<Vector2Int, bool> Collide, GameObject DebugPrefab) {
+            GameObject debug = GameObject.Find("debug");
+            while(debug != null) {
+                DestroyImmediate(debug);
+                debug = GameObject.Find("debug");
+            }
+            
             List<Node> fermee = new List<Node> ();
             SortedList<float, Node> ouverte = new SortedList<float, Node> (new DuplicateKeyComparer<float> ());
 
@@ -19,10 +25,11 @@ namespace pathfinding {
                 Node current = ouverte.First ().Value;
                 ouverte.RemoveAt (0);
                 fermee.Add (current);
-                // var debug = Instantiate (DebugPrefab);
-                // debug.name = current.GetFCost () + " - " + current.cout;
-                // debug.transform.position = new Vector3 (current.position.x / 4f, current.position.y / 4f, 0);
-                // debug.GetComponent<SpriteRenderer> ().color = new Color (1, 0, 0, 0.4f);
+                
+                debug = Instantiate (DebugPrefab);
+                debug.name = "debug";
+                debug.transform.position = new Vector3 (current.position.x / 4f, current.position.y / 4f, 0);
+                debug.GetComponent<SpriteRenderer> ().color = new Color (1, 0, 0, 0.4f);
 
                 if (current.position == targetCell) return MakePathFromLastNode (current, new List<Vector2Int> ());
 
@@ -48,10 +55,10 @@ namespace pathfinding {
                             voisinOuvert.cout = voisin.cout;
                         }
                         
-                        // debug = Instantiate (DebugPrefab);
-                        // debug.name = voisinOuvert.heuristique + " - " + voisinOuvert.cout;
-                        // debug.transform.position = new Vector3 (voisinOuvert.position.x / 4f, voisinOuvert.position.y / 4f, 0);
-                        // debug.GetComponent<SpriteRenderer> ().color = new Color (0, 1, 0, 0.4f);
+                        debug = Instantiate (DebugPrefab);
+                        debug.name = "debug";
+                        debug.transform.position = new Vector3 (voisinOuvert.position.x / 4f, voisinOuvert.position.y / 4f, 0);
+                        debug.GetComponent<SpriteRenderer> ().color = new Color (0, 1, 0, 0.4f);
                     }
                 }
             }

@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace networked {
 
-	public class BallGameNetworked : MonoBehaviour {
+	public class BallGameNetworked : NetworkBehaviour {
 
+		[SyncVar]
 		int score1 = 0;
+		[SyncVar]
 		int score2 = 0;
 
 		public string blueScoreEventName;
@@ -24,7 +27,7 @@ namespace networked {
 			score1++;
 			Transform parent = theBall.parent;
 			foreach (Transform child in parent) {
-				Destroy (child.gameObject);
+				NetworkServer.Destroy (child.gameObject);
 			}
 			respawnBalls (parent);
 			if (score1 >= 10) reset ();
@@ -33,7 +36,7 @@ namespace networked {
 			score2++;
 			Transform parent = theBall.parent;
 			foreach (Transform child in parent) {
-				Destroy (child.gameObject);
+				NetworkServer.Destroy (child.gameObject);
 			}
 			respawnBalls (parent);
 			if (score2 >= 10) reset ();
@@ -47,6 +50,8 @@ namespace networked {
 			foreach (networked.BallLink ballLink in newBallBlue.GetComponentsInChildren<networked.BallLink> ()) {
 				ballLink.ball2 = newBallOrange.transform;
 			}
+			NetworkServer.Spawn(newBallBlue);
+			NetworkServer.Spawn(newBallOrange);
 		}
 		void reset () {
 			score1 = 0;
@@ -55,12 +60,14 @@ namespace networked {
 
 		// Use this for initialization
 		void Start () {
+			if (!isServer) return;
 			Debug.Log ("start listening");
 			EventManager<Transform>.StartListening (blueScoreEventName, incr1);
 			EventManager<Transform>.StartListening (orangeScoreEventName, incr2);
 		}
 
 		void Destroy () {
+			if (!isServer) return;
 			Debug.Log ("stop listening");
 			EventManager<Transform>.StopListening (blueScoreEventName, incr1);
 			EventManager<Transform>.StopListening (orangeScoreEventName, incr2);

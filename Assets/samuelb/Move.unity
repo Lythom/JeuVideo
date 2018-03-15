@@ -122,6 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 93491221}
   - component: {fileID: 93491220}
+  - component: {fileID: 93491222}
+  - component: {fileID: 93491223}
   m_Layer: 0
   m_Name: Flower
   m_TagString: Untagged
@@ -180,12 +182,54 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 93491219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.39, y: -1.28, z: 0}
+  m_LocalPosition: {x: 1.476, y: -0.387, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2004729452}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &93491222
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93491219}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.37, y: 1.09}
+  m_Direction: 0
+--- !u!114 &93491223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93491219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d2978f16cf82c4c924fc81736baf4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 802924684}
+        m_MethodName: AddHp
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &112772028
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +408,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2004729452}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &453863164
 TilemapRenderer:
@@ -1058,7 +1102,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &763844368
 MonoBehaviour:
@@ -1092,7 +1136,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4788522608463132, guid: 4dce0b1447657ae44adc8b073e1f816d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 127.41989
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4788522608463132, guid: 4dce0b1447657ae44adc8b073e1f816d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1158,7 +1202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2004729452}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1157176161
 TilemapRenderer:
@@ -2566,7 +2610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1325935885
 MonoBehaviour:
@@ -2714,9 +2758,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 93491221}
   - {fileID: 453863163}
   - {fileID: 1157176160}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

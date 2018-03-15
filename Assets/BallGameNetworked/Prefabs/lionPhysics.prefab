@@ -26,6 +26,8 @@ GameObject:
   - component: {fileID: 58378908657873122}
   - component: {fileID: 50536538861930222}
   - component: {fileID: 114466735929098810}
+  - component: {fileID: 114979764354707924}
+  - component: {fileID: 114852932078141578}
   m_Layer: 0
   m_Name: lionPhysics
   m_TagString: Untagged
@@ -179,6 +181,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationInFrames: 20
   amplitudeInDeg: 20
+--- !u!114 &114852932078141578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669660093930596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 0
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114979764354707924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669660093930596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 142
+    i1: 188
+    i2: 97
+    i3: 231
+    i4: 217
+    i5: 201
+    i6: 191
+    i7: 52
+    i8: 57
+    i9: 176
+    i10: 145
+    i11: 23
+    i12: 134
+    i13: 189
+    i14: 187
+    i15: 181
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!212 &212351524801639044
 SpriteRenderer:
   m_ObjectHideFlags: 1

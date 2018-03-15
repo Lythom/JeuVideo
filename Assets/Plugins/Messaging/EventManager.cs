@@ -10,7 +10,9 @@ using UnityEngine.Events;
 public static class EventManager<T> {
 
     [System.Serializable]
-    public class EventWithArgs : UnityEvent<T> { }
+    public class EventWithArgs : UnityEvent<Transform, Transform, String> { }
+
+    public UnityEvent monEvent;
 
     private static Dictionary<string, EventWithArgs> eventDictionary = new Dictionary<string, EventWithArgs> ();
 
@@ -22,6 +24,7 @@ public static class EventManager<T> {
             thisEvent = new EventWithArgs ();
             thisEvent.AddListener (listener);
             eventDictionary.Add (eventName, thisEvent);
+            monEvent.
         }
     }
 

@@ -6,30 +6,65 @@ using UnityEngine;
 namespace pathfinding {
 
     public class AStar : MonoBehaviour {
-        public static List<Vector2Int> FindPath (Vector2Int origin, Vector2Int targetCell, Func<Vector2Int, bool> Collide, GameObject DebugPrefab) {
-            GameObject debug = GameObject.Find("debug");
-            while(debug != null) {
-                DestroyImmediate(debug);
-                debug = GameObject.Find("debug");
+
+        private class DebugPool {
+            private List<GameObject> list = new List<GameObject> ();
+
+            public void Init (int count, GameObject debugPrefab) {
+                GameObject parent = new GameObject ("debugParent");
+                for (int i = 0; i < count; i++) {
+                    list.Add (Instantiate (debugPrefab, parent.transform));
+                }
             }
-            
+
+            public void Insert (GameObject debug) {
+                debug.name = "default";
+                debug.transform.position = Vector3.zero;
+                debug.GetComponent<SpriteRenderer> ().color = Color.white;
+
+                list.Add (debug);
+            }
+
+            public GameObject Get () {
+                GameObject next = list.First ();
+                list.Remove (next);
+                return next;
+            }
+        }
+
+        public static void InitPool (GameObject debugPrefab) {
+            pool = new DebugPool ();
+            pool.Init (2000, debugPrefab);
+        }
+
+        private static DebugPool pool;
+
+        public static List<Vector2Int> FindPath (Vector2Int origin, Vector2Int targetCell, Func<Vector2Int, bool> Collide) {
+
+            GameObject debug = GameObject.Find ("debug");
+            while (debug != null) {
+                pool.Insert (debug);
+                debug = GameObject.Find ("debug");
+            }
+
             List<Node> fermee = new List<Node> ();
             SortedList<float, Node> ouverte = new SortedList<float, Node> (new DuplicateKeyComparer<float> ());
 
             Node depart = new Node (origin, Vector2.Distance (origin, targetCell));
             depart.cout = 0;
-            ouverte.Add (depart.GetFCost(), depart);
+            ouverte.Add (depart.GetFCost (), depart);
             int loopCount = 0;
             while (ouverte.Count > 0 && loopCount < 1000) {
                 loopCount++;
                 Node current = ouverte.First ().Value;
                 ouverte.RemoveAt (0);
                 fermee.Add (current);
-                
-                debug = Instantiate (DebugPrefab);
+
+                debug = pool.Get ();
                 debug.name = "debug";
                 debug.transform.position = new Vector3 (current.position.x / 4f, current.position.y / 4f, 0);
                 debug.GetComponent<SpriteRenderer> ().color = new Color (1, 0, 0, 0.4f);
+                debug.GetComponent<SpriteRenderer> ().sortingOrder = loopCount;
 
                 if (current.position == targetCell) return MakePathFromLastNode (current, new List<Vector2Int> ());
 
@@ -46,7 +81,7 @@ namespace pathfinding {
                         // s'il n'existe pas, créer et ajouter
                         if (voisinOuvert == null) {
                             voisinOuvert = voisin;
-                            ouverte.Add (voisinOuvert.GetFCost(), voisinOuvert);
+                            ouverte.Add (voisinOuvert.GetFCost (), voisinOuvert);
                             voisinOuvert.parent = current;
                         }
                         // s'il existait déjà mais qu'il est plus couteux, mettre à jour
@@ -54,11 +89,12 @@ namespace pathfinding {
                             voisinOuvert.parent = current;
                             voisinOuvert.cout = voisin.cout;
                         }
-                        
-                        debug = Instantiate (DebugPrefab);
+
+                        debug = pool.Get ();
                         debug.name = "debug";
                         debug.transform.position = new Vector3 (voisinOuvert.position.x / 4f, voisinOuvert.position.y / 4f, 0);
                         debug.GetComponent<SpriteRenderer> ().color = new Color (0, 1, 0, 0.4f);
+                        debug.GetComponent<SpriteRenderer> ().sortingOrder = loopCount;
                     }
                 }
             }

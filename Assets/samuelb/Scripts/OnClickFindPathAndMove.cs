@@ -16,7 +16,9 @@ public class OnClickFindPathAndMove : MonoBehaviour {
 
 	public Vector3? moveTo;
 
-	void Start () { }
+	void Start () {
+		AStar.InitPool(debugPrefab);
+	}
 
 	void Update () {
 		if (grid != null && Input.GetMouseButtonUp (0)) {
@@ -25,7 +27,7 @@ public class OnClickFindPathAndMove : MonoBehaviour {
 			v3.z = 10.0f;
 			Vector3 targetCell = Camera.main.ScreenToWorldPoint (v3);
 			var path = AStar
-				.FindPath (grid.WorldToCell (origin), grid.WorldToCell (targetCell), Collide, debugPrefab);
+				.FindPath (grid.WorldToCell (origin), grid.WorldToCell (targetCell), Collide);
 			if (path != null) {
 				currentPath.nodes = path
 					.Select (pos => (Vector3) grid.CellToWorld (pos))
